@@ -1,0 +1,148 @@
+/* Preeti & Vivek — invitation theme
+   Taken from the printed card: sky-wash watercolour, ivory paper, bronze foil
+   lettering, cornflower for times, and a rose-plum reserved for the reception.
+   Deliberately single-theme (a printed invitation), so every colour is set explicitly. */
+
+:root {
+  /* Layout: one centred paper column framed by a thin bronze border, with arches echoing the mandap */
+  --sky: #dce8f4;          /* watercolour wash behind everything */
+  --paper: #fbf7ee;        /* ivory card stock */
+  --paper-deep: #f3ead8;   /* shaded paper, panels */
+  --bronze: #9a6433;       /* foil lettering, rules, ornaments */
+  --bronze-deep: #6b4220;  /* body text */
+  --bronze-soft: #c9a47a;  /* hairlines, faint ornaments */
+  --cornflower: #2d5c92;   /* times on the itinerary */
+  --cornflower-soft: #cfe0f2;
+  --rose: #7c3b4c;         /* reception accent */
+  --blush: #f3d6d3;
+
+  --swatch-green: #3f8a4a;
+  --swatch-blue: #3b86c8;
+  --swatch-purple: #8c62c4;
+  --swatch-red: #9e1f2c;
+  --swatch-black: #1f1b1a;
+
+  --font-display: "Cinzel", "Trajan Pro", "Times New Roman", serif;
+  --font-script: "Pinyon Script", "Snell Roundhand", "Apple Chancery", cursive;
+  --font-body: "Cormorant Garamond", "Garamond", "Georgia", serif;
+  --font-deva: "Tiro Devanagari Sanskrit", "Kohinoor Devanagari", "Noto Serif Devanagari", serif;
+
+  --step--1: clamp(0.82rem, 0.78rem + 0.2vw, 0.92rem);
+  --step-0: clamp(1.05rem, 1rem + 0.25vw, 1.2rem);
+  --step-1: clamp(1.3rem, 1.15rem + 0.6vw, 1.6rem);
+  --step-2: clamp(1.7rem, 1.4rem + 1.2vw, 2.4rem);
+  --step-3: clamp(2.3rem, 1.7rem + 2.6vw, 3.8rem);
+  --step-4: clamp(3.2rem, 2rem + 6vw, 7rem);
+
+  --gutter: clamp(16px, 4vw, 40px);
+  --radius-arch: 999px 999px 14px 14px;
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+
+  color-scheme: light;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background:
+    radial-gradient(60% 40% at 15% 10%, #ffffffb3 0%, transparent 70%),
+    radial-gradient(50% 35% at 85% 30%, #ffffff99 0%, transparent 70%),
+    radial-gradient(70% 50% at 50% 90%, #ffffff80 0%, transparent 70%),
+    var(--sky);
+  background-attachment: fixed;
+  color: var(--bronze-deep);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--bronze);
+  text-wrap: balance;
+  margin: 0;
+  line-height: 1.1;
+}
+
+p { margin: 0; }
+
+a { color: var(--bronze); text-underline-offset: 3px; }
+
+::selection { background: var(--blush); color: var(--bronze-deep); }
+
+:focus-visible { outline: 2px solid var(--cornflower); outline-offset: 3px; border-radius: 4px; }
+
+/* Small caps label used for "Date", "Time", "Venue" and themes */
+.label {
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bronze);
+}
+
+.script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  color: var(--bronze);
+}
+
+.deva { font-family: var(--font-deva); }
+
+/* Lotus divider: rule — lotus — rule */
+.lotus-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--bronze);
+}
+.lotus-rule::before,
+.lotus-rule::after {
+  content: "";
+  height: 1px;
+  flex: 0 1 140px;
+  background: linear-gradient(90deg, transparent, var(--bronze-soft));
+}
+.lotus-rule::after { background: linear-gradient(90deg, var(--bronze-soft), transparent); }
+.lotus-rule svg { width: 34px; height: 22px; flex: none; }
+
+/* Arch frame, echoing the mandap on the card */
+.arch {
+  border-radius: var(--radius-arch);
+  overflow: hidden;
+  border: 1px solid var(--bronze-soft);
+  outline: 1px solid var(--bronze-soft);
+  outline-offset: 6px;
+  background: var(--paper);
+  max-width: 100%;
+}
+.arch img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid var(--bronze);
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bronze);
+  background: transparent;
+  cursor: pointer;
+  transition: background .25s, color .25s;
+}
+.btn:hover { background: var(--bronze); color: var(--paper); }
+.btn--solid { background: var(--bronze); color: var(--paper); }
+.btn--solid:hover { background: var(--bronze-deep); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}

@@ -1,0 +1,268 @@
+<title>Save the Date · Preeti &amp; Vivek</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&family=Tiro+Devanagari+Sanskrit&display=swap">
+<link rel="stylesheet" href="theme.css">
+<style>
+  /* Layout: one phone-shaped paper card, centred; the December calendar is the hero */
+  .stage {
+    min-height: 100%;
+    display: grid;
+    place-items: center;
+    padding-inline: clamp(16px, 4vw, 32px);
+    padding-block: clamp(16px, 5vw, 48px);
+  }
+  .std {
+    position: relative;
+    width: min(460px, 100%);
+    box-sizing: border-box;
+    padding: 64px clamp(26px, 7vw, 44px) 96px;
+    background: var(--paper);
+    box-shadow: 0 30px 80px -40px #6b422066;
+    display: grid;
+    justify-items: center;
+    gap: 16px;
+    text-align: center;
+    overflow: hidden;
+    animation: card-in 1.1s var(--ease-out) both;
+  }
+  .std::before { content: ""; position: absolute; inset: 12px; border: 1px solid var(--bronze-soft); pointer-events: none; }
+  .corner { position: absolute; width: 112px; pointer-events: none; mix-blend-mode: multiply;
+    -webkit-mask-image: radial-gradient(circle at 0 0, #000 50%, transparent 72%);
+    mask-image: radial-gradient(circle at 0 0, #000 50%, transparent 72%); }
+  .corner--tl { top: 0; left: 0; }
+  .corner--tr { top: 0; right: 0; transform: scaleX(-1); }
+  .corner--bl { bottom: 0; left: 0; transform: scaleY(-1); }
+  .corner--br { bottom: 0; right: 0; transform: scale(-1, -1); }
+
+  .bells { position: absolute; top: 0; width: 24px; height: 128px; transform-origin: 50% 0; animation: swing 4.6s ease-in-out infinite; }
+  .bells--l { left: 26%; }
+  .bells--r { right: 26%; animation-delay: -2.3s; }
+
+  .jain { width: 40px; mix-blend-mode: multiply; }
+  .motto { font-size: 1.05rem; color: var(--bronze); margin-top: -6px; }
+  .dear { font-size: 2.1rem; line-height: 1.1; }
+
+  .title { display: grid; justify-items: center; line-height: 1; }
+  .title .script { font-size: clamp(2.6rem, 2rem + 4vw, 3.4rem); margin-bottom: -6px; }
+  .title h1 { font-size: clamp(3.4rem, 2.4rem + 6vw, 4.6rem); letter-spacing: 0.08em; }
+
+  .couple { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1fr); align-items: end; width: calc(100% + 24px); margin-inline: -12px; margin-block: -2px -8px; }
+  .fig { width: 100%; height: clamp(190px, 52vw, 240px); object-fit: cover; object-position: 50% 0; display: block;
+    mix-blend-mode: multiply;
+    -webkit-mask-image: radial-gradient(ellipse 62% 58% at var(--fx) 46%, #000 58%, transparent 100%);
+    mask-image: radial-gradient(ellipse 62% 58% at var(--fx) 46%, #000 58%, transparent 100%); }
+  .fig--groom { --fx: 58%; }
+  .fig--bride { --fx: 42%; }
+  .fig--groom { animation: slide-l 1.5s var(--ease-out) .6s both; }
+  .fig--bride { animation: slide-r 1.5s var(--ease-out) .6s both; }
+  .couple .monogram { width: 100%; align-self: center; margin-bottom: 24px; }
+  .monogram { width: 150px; mix-blend-mode: multiply; margin-block: -4px;
+    -webkit-mask-image: radial-gradient(circle, #000 58%, transparent 72%);
+    mask-image: radial-gradient(circle, #000 58%, transparent 72%); }
+  .names { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.12em; color: var(--bronze); }
+  .names .script { font-size: 1.9rem; letter-spacing: 0; margin-inline: 4px; }
+
+  /* December 2026 calendar */
+  .cal { width: 100%; display: grid; gap: 10px; margin-top: 4px; }
+  .cal-head { display: flex; align-items: baseline; justify-content: center; gap: 10px; }
+  .cal-head b { font-family: var(--font-display); font-weight: 500; font-size: 1.25rem; letter-spacing: 0.24em; color: var(--bronze); }
+  .cal-head span { font-family: var(--font-display); letter-spacing: 0.2em; font-size: 0.9rem; }
+  .grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); row-gap: 4px; font-variant-numeric: tabular-nums; }
+  .dow { font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.14em; color: var(--bronze); padding-bottom: 6px; border-bottom: 1px solid var(--bronze-soft); margin-bottom: 4px; }
+  .d { position: relative; display: grid; place-items: center; height: 38px; font-size: 1.05rem; color: var(--bronze-deep); }
+  .d.is-wed { font-family: var(--font-display); font-weight: 600; color: var(--bronze); font-size: 1.2rem; }
+  .d.is-rx { color: var(--rose); font-weight: 600; }
+  .d.is-rx::after { content: ""; position: absolute; bottom: 3px; width: 5px; height: 5px; border-radius: 50%; background: var(--rose); }
+  .ring { position: absolute; inset: -6px -4px; width: calc(100% + 8px); height: calc(100% + 12px); overflow: visible; pointer-events: none; }
+  .ring path { fill: none; stroke: var(--bronze); stroke-width: 1.6; stroke-linecap: round; stroke-dasharray: 130; stroke-dashoffset: 0; }
+  .legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 16px; font-size: 0.95rem; font-style: italic; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+  .legend .w i { border: 1.5px solid var(--bronze); }
+  .legend .r i { background: var(--rose); width: 6px; height: 6px; vertical-align: 2px; }
+
+  .place { display: grid; gap: 2px; }
+  .place strong { font-family: var(--font-display); font-weight: 500; font-size: 1.2rem; letter-spacing: 0.1em; color: var(--bronze); }
+  .place span { font-family: var(--font-display); font-size: 0.78rem; letter-spacing: 0.3em; }
+
+  .countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: 100%; border-block: 1px solid var(--bronze-soft); padding-block: 12px; }
+  .unit { display: grid; justify-items: center; }
+  .unit b { font-family: var(--font-display); font-weight: 500; font-size: 1.6rem; color: var(--cornflower); line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .unit small { font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; }
+
+  .actions { display: grid; gap: 10px; width: 100%; }
+  .actions .btn { justify-content: center; min-height: 46px; box-sizing: border-box; }
+  .follow { font-style: italic; font-size: 1rem; }
+
+  #petals { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+
+  /* Choreography: everything rests visible; the motion plays once on load */
+  .in { animation: rise .9s var(--ease-out) both; animation-delay: calc(var(--d, 0) * 1ms); }
+  .grid .d { animation: pop .5s var(--ease-out) both; animation-delay: calc(900ms + var(--i) * 18ms); }
+  .ring path { animation: draw 1.3s var(--ease-out) both; animation-delay: var(--rd, 1.9s); }
+  .settled .in, .settled .grid .d, .settled .ring path, .settled .std, .settled .fig { animation: none !important; }
+
+  @keyframes card-in { from { opacity: 0; transform: translateY(24px) scale(.98); } to { opacity: 1; transform: none; } }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes slide-l { from { opacity: 0; transform: translateX(-36px); } to { opacity: 1; transform: none; } }
+  @keyframes slide-r { from { opacity: 0; transform: translateX(36px); } to { opacity: 1; transform: none; } }
+  @keyframes pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+  @keyframes draw { from { stroke-dashoffset: 130; } to { stroke-dashoffset: 0; } }
+  @keyframes swing { 0%, 100% { transform: rotate(3deg); } 50% { transform: rotate(-3deg); } }
+  @media (prefers-reduced-motion: reduce) { #petals { display: none; } }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#9a6433"/><stop offset=".45" stop-color="#e8c89a"/><stop offset="1" stop-color="#9a6433"/></linearGradient>
+    <symbol id="bell-string" viewBox="0 0 34 240">
+      <path d="M17 0v196" stroke="#c9a47a" stroke-width="1"/>
+      <g fill="url(#gold)">
+        <circle cx="17" cy="24" r="3.4"/><circle cx="17" cy="46" r="3.4"/><circle cx="17" cy="68" r="3.4"/><circle cx="17" cy="90" r="3.4"/>
+        <circle cx="17" cy="112" r="3.4"/><circle cx="17" cy="134" r="3.4"/><circle cx="17" cy="156" r="3.4"/><circle cx="17" cy="178" r="3.4"/>
+        <path d="M17 194c-7 0-10 7-10 16 0 6-3 9-5 11h30c-2-2-5-5-5-11 0-9-3-16-10-16z"/><circle cx="17" cy="226" r="3.2"/>
+      </g>
+    </symbol>
+    <symbol id="lotus" viewBox="0 0 40 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round">
+        <path d="M20 2c3.2 4.2 4 9.4 0 16-4-6.6-3.2-11.8 0-16z"/><path d="M20 18c-2.4-4.6-6.4-7.8-11.6-8.6 1.4 5 5.8 8 11.6 8.6z"/>
+        <path d="M20 18c2.4-4.6 6.4-7.8 11.6-8.6-1.4 5-5.8 8-11.6 8.6z"/><path d="M20 18c-6 .6-11.6-.6-16-3.8 5.8-1.4 11.2-.4 16 3.8z"/>
+        <path d="M20 18c6 .6 11.6-.6 16-3.8-5.8-1.4-11.2-.4-16 3.8z"/><path d="M9 21.5h22"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<canvas id="petals" aria-hidden="true"></canvas>
+
+<div class="stage" id="stage">
+  <main class="std">
+    <img class="corner corner--tl" src="images/corner.webp" alt="">
+    <img class="corner corner--tr" src="images/corner.webp" alt="">
+    <img class="corner corner--bl" src="images/corner.webp" alt="">
+    <img class="corner corner--br" src="images/corner.webp" alt="">
+    <svg class="bells bells--l" aria-hidden="true"><use href="#bell-string"/></svg>
+    <svg class="bells bells--r" aria-hidden="true"><use href="#bell-string"/></svg>
+
+    <img class="jain in" style="--d:300" src="images/jain.webp" alt="Jain emblem">
+    <p class="motto deva in" style="--d:400" lang="sa">परस्परोपग्रहो जीवनाम्</p>
+
+    <p class="dear script in" id="dear" style="--d:500" hidden></p>
+
+    <div class="title in" style="--d:550">
+      <span class="script">Save the</span>
+      <h1>Date</h1>
+    </div>
+
+    <div class="couple" role="img" aria-label="The groom and bride in namaste, facing each other around the P and V monogram">
+      <img class="fig fig--groom" src="images/groom.webp" alt="">
+      <img class="monogram in" style="--d:700" src="images/monogram.webp" alt="">
+      <img class="fig fig--bride" src="images/bride.webp" alt="">
+    </div>
+    <p class="names in" style="--d:800">Preeti <span class="script">&amp;</span> Vivek</p>
+    <div class="lotus-rule in" style="--d:850"><svg aria-hidden="true"><use href="#lotus"/></svg></div>
+
+    <section class="cal in" style="--d:850" aria-label="December 2026 calendar: wedding on the 20th and 21st, reception on the 23rd">
+      <div class="cal-head"><b>December</b><span>2026</span></div>
+      <div class="grid" id="grid" aria-hidden="true"></div>
+      <div class="legend">
+        <span class="w"><i></i>Wedding · Lonavala</span>
+        <span class="r"><i></i>Reception · Chennai</span>
+      </div>
+    </section>
+
+    <div class="place in" style="--d:1600">
+      <strong>Treasure Island</strong>
+      <span>Lonavala</span>
+    </div>
+
+    <div class="countdown in" style="--d:1800" aria-label="Time until the wedding">
+      <div class="unit"><b data-u="d">–</b><small>Days</small></div>
+      <div class="unit"><b data-u="h">–</b><small>Hours</small></div>
+      <div class="unit"><b data-u="m">–</b><small>Minutes</small></div>
+      <div class="unit"><b data-u="s">–</b><small>Seconds</small></div>
+    </div>
+
+    <div class="actions in" style="--d:2000">
+      <a class="btn btn--solid" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Preeti%20%26%20Vivek%20%E2%80%94%20Wedding&amp;dates=20261220T033000Z/20261221T113000Z&amp;location=Treasure%20Island%2C%20Lonavala&amp;details=Save%20the%20date!%20Haldi%20%26%20Sangeet%20on%2020%20Dec%2C%20Barat%20%26%20Phera%20on%2021%20Dec." target="_blank" rel="noopener">Add to calendar</a>
+      <a class="btn" id="invite-link" href="https://claude.ai/artifact/B9oJznPErYZHz5gShCeSMi" target="_blank" rel="noopener">View the invitation</a>
+    </div>
+    <p class="follow in" style="--d:2100">Itinerary, wardrobe guide &amp; RSVP are on the invitation.</p>
+  </main>
+</div>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = id => document.getElementById(id);
+
+  // Personal greeting from …#for-Riya-and-Family, carried to the invitation link
+  const hash = decodeURIComponent(location.hash.slice(1));
+  if (/^for-[A-Za-z0-9.-]+$/.test(hash)) {
+    const name = hash.slice(4).split('-').filter(Boolean).map(w => w.toLowerCase() === 'and' ? '&' : w).join(' ');
+    $('dear').textContent = 'Dear ' + name + ',';
+    $('dear').hidden = false;
+    $('invite-link').href += '#' + hash;
+  }
+
+  // December 2026 starts on a Tuesday
+  const grid = $('grid');
+  'S M T W T F S'.split(' ').forEach(d => { const e = document.createElement('span'); e.className = 'dow'; e.textContent = d; grid.appendChild(e); });
+  for (let i = 0; i < 2; i++) grid.appendChild(document.createElement('span'));
+  const ring = 'M8 22c0-10 10-17 24-17s24 6 24 16-11 17-25 17S6 32 9 19c2-7 12-11 25-11';
+  for (let day = 1; day <= 31; day++) {
+    const c = document.createElement('span');
+    c.className = 'd'; c.textContent = day; c.style.setProperty('--i', day);
+    if (day === 20 || day === 21) {
+      c.classList.add('is-wed');
+      c.insertAdjacentHTML('beforeend', `<svg class="ring" viewBox="0 0 64 44" preserveAspectRatio="none" style="--rd:${day === 20 ? 1.9 : 2.3}s"><path d="${ring}"/></svg>`);
+    }
+    if (day === 23) c.classList.add('is-rx');
+    grid.appendChild(c);
+  }
+  setTimeout(() => $('stage').classList.add('settled'), 4200);
+
+  // Countdown to 20 Dec 2026, 9:00 IST
+  const target = Date.parse('2026-12-20T09:00:00+05:30');
+  const cells = {};
+  document.querySelectorAll('[data-u]').forEach(b => cells[b.dataset.u] = b);
+  const tick = () => {
+    let s = Math.max(0, Math.floor((target - Date.now()) / 1000));
+    const d = Math.floor(s / 86400); s -= d * 86400;
+    const h = Math.floor(s / 3600); s -= h * 3600;
+    const m = Math.floor(s / 60); s -= m * 60;
+    cells.d.textContent = d;
+    cells.h.textContent = String(h).padStart(2, '0');
+    cells.m.textContent = String(m).padStart(2, '0');
+    cells.s.textContent = String(s).padStart(2, '0');
+  };
+  tick(); setInterval(tick, 1000);
+
+  // Gentle falling petals
+  if (reduce) return;
+  const cv = $('petals'), ctx = cv.getContext('2d');
+  const colors = ['#f2c3c6', '#f7d9d4', '#bcd4ec', '#d6e4f3', '#fff1d6', '#e9c9a0'];
+  let W, H, dpr;
+  const size = () => { dpr = Math.min(devicePixelRatio || 1, 2); W = cv.width = innerWidth * dpr; H = cv.height = innerHeight * dpr; };
+  size(); addEventListener('resize', size);
+  const make = top => ({ x: Math.random() * W, y: top ? -20 * dpr : Math.random() * H, r: (5 + Math.random() * 5) * dpr,
+    vy: (0.3 + Math.random() * 0.5) * dpr, sway: Math.random() * 6.28, spin: Math.random() * 3.14, vs: (Math.random() - .5) * .03,
+    c: colors[(Math.random() * colors.length) | 0], a: .5 + Math.random() * .35 });
+  const petals = Array.from({ length: innerWidth < 600 ? 14 : 22 }, () => make(false));
+  (function draw() {
+    ctx.clearRect(0, 0, W, H);
+    petals.forEach(p => {
+      p.sway += .012; p.spin += p.vs; p.y += p.vy; p.x += Math.sin(p.sway) * .5 * dpr;
+      if (p.y > H + 20 * dpr) Object.assign(p, make(true));
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.spin);
+      ctx.scale(1, Math.abs(Math.cos(p.spin * 1.6)) * .6 + .35);
+      ctx.globalAlpha = p.a; ctx.fillStyle = p.c;
+      ctx.beginPath(); ctx.moveTo(0, -p.r);
+      ctx.bezierCurveTo(p.r * .9, -p.r * .6, p.r * .7, p.r * .7, 0, p.r);
+      ctx.bezierCurveTo(-p.r * .7, p.r * .7, -p.r * .9, -p.r * .6, 0, -p.r);
+      ctx.fill(); ctx.restore();
+    });
+    requestAnimationFrame(draw);
+  })();
+})();
+</script>
