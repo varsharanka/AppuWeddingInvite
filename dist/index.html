@@ -469,7 +469,7 @@
 
   /* Bottom tab bar (phones) */
   .tabbar { display: none; }
-  .couple-m, .day-switch, .look-dots { display: none; }
+  .couple-m, .day-switch, .look-dots, .side { display: none; }
 
   @media (max-width: 700px) {
     .nav { display: none; }
@@ -509,20 +509,27 @@
     .hero-inner { gap: 14px; }
     .bells--l, .bells--r { height: 150px !important; width: 26px; }
     .parents { font-size: 0.8rem; line-height: 1.7; }
-    .couple-m {
-      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1fr);
-      align-items: end; width: 100%; margin-top: 4px;
+    /* Dulha and dulhan stand either side of the names, bowing in, as on the printed card */
+    .names { position: relative; width: 100%; }
+    .names > :not(.side) { position: relative; z-index: 1; }
+    .side {
+      display: block; position: absolute; z-index: 0; width: 27vw; max-width: 150px; pointer-events: none;
+      -webkit-mask-image: linear-gradient(var(--fade), #000 62%, transparent), linear-gradient(to bottom, transparent, #000 9%, #000 78%, transparent);
+      -webkit-mask-composite: source-in;
+      mask-image: linear-gradient(var(--fade), #000 62%, transparent), linear-gradient(to bottom, transparent, #000 9%, #000 78%, transparent);
+      mask-composite: intersect;
     }
-    .couple-m img { width: 100%; display: block; }
-    .couple-m .fig { height: 190px; object-fit: cover; object-position: 50% 0;
-      -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent);
-      mask-image: linear-gradient(to bottom, #000 72%, transparent); }
-    .couple-m .mono { mix-blend-mode: multiply; align-self: center;
+    .side--groom { --fade: to right; left: -22px; top: -6px; }
+    .side--bride { --fade: to left; right: -22px; top: 28px; }
+    .stage .side--groom { animation: slide-l 1.4s var(--ease-out) 1s both; }
+    .stage .side--bride { animation: slide-r 1.4s var(--ease-out) 1s both; }
+    .settled .side { animation: none !important; }
+    .names .parents { padding-inline: 17vw; }
+    .couple-m { display: grid; justify-items: center; width: 100%; margin-top: 4px; }
+    .couple-m .fig { display: none; }
+    .couple-m .mono { width: 150px; mix-blend-mode: multiply; align-self: center;
       -webkit-mask-image: radial-gradient(circle, #000 58%, transparent 72%);
       mask-image: radial-gradient(circle, #000 58%, transparent 72%); }
-    .stage .couple-m .fig--groom { animation: slide-l 1.4s var(--ease-out) 1s both; }
-    .stage .couple-m .fig--bride { animation: slide-r 1.4s var(--ease-out) 1s both; }
-    .settled .couple-m .fig { animation: none !important; }
 
     .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 6px; }
     .fact + .fact { border-left: 1px solid var(--bronze-soft); border-top: 0; }
@@ -682,6 +689,8 @@
         <p class="invite-line rise" style="--d:400">Together with our families<br>we joyfully invite you to celebrate<br>the wedding of</p>
 
         <h1 class="names">
+          <img class="side side--groom" src="images/groom.webp" alt="" aria-hidden="true">
+          <img class="side side--bride" src="images/bride.webp" alt="" aria-hidden="true">
           <span class="name" data-split style="--base:1100">Preeti</span>
           <span class="parents rise" style="--d:1500"><abbr title="Granddaughter of">G/D/O</abbr>Late Smt Ratni Devi – Sri Champalalji Ranka Sethia<br><abbr title="Daughter of">D/O</abbr>Smt Ekta – Dilipkumar Ranka Sethia</span>
           <span class="and script rise" style="--d:1700">and</span>
