@@ -1,4 +1,6 @@
 <title>Preeti &amp; Vivek</title>
+<link rel="preload" as="image" href="images/cover-sm.webp" media="(max-width: 900px)" fetchpriority="high">
+<link rel="preload" as="image" href="images/cover.webp" media="(min-width: 901px)" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&family=Tiro+Devanagari+Sanskrit&display=swap">
@@ -429,9 +431,10 @@
   }
   .panel::before { /* the cover artwork, spanning both panels so the curtain parts the picture */
     content: ""; position: absolute; top: 0; bottom: 0; width: 100vw;
-    background: url(images/cover.webp) center / cover no-repeat;
+    background: url(images/cover-sm.webp) center / cover no-repeat, url(data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAAAQBQCdASoYACQAPxF0rlGsJqQiqqwBgCIJZQDJTBZurnLRASQcuace/PM1alskDlwAAP7Tw0Ryd1vqgUSmWJoAy6HhShGgEGqXW39VkXcZhxcXflNpriJvrJu5krM3frhjwLm9658ckK1uUECRjWmG0z1MCXNJg2yhggMv+pqGF0zcCjB+Q+Nw21H5LvbVAEB17TAnpevRt9gk7Uxq0I/nT+oC7RAA) center / cover no-repeat; /* blurry stand-in shows instantly */
     animation: drift 24s ease-in-out infinite alternate;
   }
+  @media (min-width: 901px) { .panel::before { background-image: url(images/cover.webp), url(data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAAAQBQCdASoYACQAPxF0rlGsJqQiqqwBgCIJZQDJTBZurnLRASQcuace/PM1alskDlwAAP7Tw0Ryd1vqgUSmWJoAy6HhShGgEGqXW39VkXcZhxcXflNpriJvrJu5krM3frhjwLm9658ckK1uUECRjWmG0z1MCXNJg2yhggMv+pqGF0zcCjB+Q+Nw21H5LvbVAEB17TAnpevRt9gk7Uxq0I/nT+oC7RAA); } }
   .panel--l::before { left: 0; }
   .panel--r::before { right: 0; }
   @media (min-aspect-ratio: 4/5) { /* wide screens: show the whole artwork, fading into the sky wash */
@@ -819,8 +822,8 @@
       <svg class="bells bells--l" style="height:230px" aria-hidden="true"><use href="#bell-string"/></svg>
       <svg class="bells bells--r" style="height:230px" aria-hidden="true"><use href="#bell-string"/></svg>
       <svg class="bells bells--r2" aria-hidden="true"><use href="#bell-string"/></svg>
-      <img class="figure figure--groom" src="images/groom.webp" alt="">
-      <img class="figure figure--bride" src="images/bride.webp" alt="">
+      <img class="figure figure--groom" loading="lazy" decoding="async" src="images/groom.webp" alt="">
+      <img class="figure figure--bride" loading="lazy" decoding="async" src="images/bride.webp" alt="">
 
       <div class="hero-inner">
         <img class="jain rise" style="--d:0" src="images/jain.webp" alt="Jain emblem">
@@ -832,8 +835,8 @@
         <p class="invite-line rise" style="--d:400">Together with our families<br>we joyfully invite you to celebrate<br>the wedding of</p>
 
         <h1 class="names">
-          <img class="side side--groom" src="images/groom.webp" alt="" aria-hidden="true">
-          <img class="side side--bride" src="images/bride.webp" alt="" aria-hidden="true">
+          <img class="side side--groom" loading="lazy" decoding="async" src="images/groom.webp" alt="" aria-hidden="true">
+          <img class="side side--bride" loading="lazy" decoding="async" src="images/bride.webp" alt="" aria-hidden="true">
           <span class="name" data-split style="--base:1100">Preeti</span>
           <span class="parents rise" style="--d:1500"><abbr title="Granddaughter of">G/D/O</abbr>Late Smt Ratni Devi – Sri Champalalji Ranka Sethia<br><abbr title="Daughter of">D/O</abbr>Smt Ekta – Dilipkumar Ranka Sethia</span>
           <span class="and script rise" style="--d:1700">and</span>
@@ -842,9 +845,7 @@
         </h1>
 
         <div class="couple-m" aria-hidden="true">
-          <img class="fig fig--groom" src="images/groom.webp" alt="">
           <img class="mono rise" style="--d:2400" src="images/monogram.webp" alt="">
-          <img class="fig fig--bride" src="images/bride.webp" alt="">
         </div>
 
         <div class="facts rise" style="--d:2500">
@@ -899,10 +900,10 @@
           <div class="day-tag">Dec 20</div>
           <p class="day-sub">Sunday · Haldi &amp; Sangeet</p>
           <ol class="timeline">
-            <li class="event"><time>9:00<span>– 13:00</span></time><i class="node"></i><div><h3>Check-in</h3></div><img src="images/checkin.webp" alt=""></li>
-            <li class="event"><time>12:30<span>– 14:00</span></time><i class="node"></i><div><h3>Lunch</h3></div><img src="images/cloche.webp" alt=""></li>
-            <li class="event"><time>15:00<span>– 17:00</span></time><i class="node"></i><div><h3>Haldi &amp; Hi-tea</h3></div><img src="images/tea.webp" alt=""></li>
-            <li class="event"><time>18:30<span>– 22:00</span></time><i class="node"></i><div><h3>Sangeet &amp; Dinner</h3><p>Pre-sunset dinner 17:30 – 18:30</p></div><img src="images/music.webp" alt=""></li>
+            <li class="event"><time>9:00<span>– 13:00</span></time><i class="node"></i><div><h3>Check-in</h3></div><img src="images/checkin.webp" alt="" loading="lazy" decoding="async"></li>
+            <li class="event"><time>12:30<span>– 14:00</span></time><i class="node"></i><div><h3>Lunch</h3></div><img src="images/cloche.webp" alt="" loading="lazy" decoding="async"></li>
+            <li class="event"><time>15:00<span>– 17:00</span></time><i class="node"></i><div><h3>Haldi &amp; Hi-tea</h3></div><img src="images/tea.webp" alt="" loading="lazy" decoding="async"></li>
+            <li class="event"><time>18:30<span>– 22:00</span></time><i class="node"></i><div><h3>Sangeet &amp; Dinner</h3><p>Pre-sunset dinner 17:30 – 18:30</p></div><img src="images/music.webp" alt="" loading="lazy" decoding="async"></li>
           </ol>
         </article>
 
@@ -910,9 +911,9 @@
           <div class="day-tag">Dec 21</div>
           <p class="day-sub">Monday · The Wedding</p>
           <ol class="timeline">
-            <li class="event"><time>9:00<span>– 12:00</span></time><i class="node"></i><div><h3>Barat &amp; Phera</h3></div><img src="images/mandap.webp" alt=""></li>
-            <li class="event"><time>12:00<span>– 14:00</span></time><i class="node"></i><div><h3>Lunch</h3></div><img src="images/cloche.webp" alt=""></li>
-            <li class="event"><time>15:30<span>– 17:00</span></time><i class="node"></i><div><h3>Hi-tea</h3></div><img src="images/sweets.webp" alt=""></li>
+            <li class="event"><time>9:00<span>– 12:00</span></time><i class="node"></i><div><h3>Barat &amp; Phera</h3></div><img src="images/mandap.webp" alt="" loading="lazy" decoding="async"></li>
+            <li class="event"><time>12:00<span>– 14:00</span></time><i class="node"></i><div><h3>Lunch</h3></div><img src="images/cloche.webp" alt="" loading="lazy" decoding="async"></li>
+            <li class="event"><time>15:30<span>– 17:00</span></time><i class="node"></i><div><h3>Hi-tea</h3></div><img src="images/sweets.webp" alt="" loading="lazy" decoding="async"></li>
           </ol>
         </article>
       </div>
@@ -948,7 +949,7 @@
             </div>
           </div>
           <div class="arch">
-            <img src="images/haldi.webp" alt="Couple in green, blue and purple outfits at a carnival" loading="lazy">
+            <img src="images/haldi.webp" alt="Couple in green, blue and purple outfits at a carnival" loading="lazy" decoding="async">
             <span class="bunting" aria-hidden="true"><i style="--c:#3f8a4a;--y:6px;--d:0.0s"></i><i style="--c:#3b86c8;--y:10px;--d:-0.3s"></i><i style="--c:#8c62c4;--y:13px;--d:-0.6s"></i><i style="--c:#f6c744;--y:14px;--d:-0.9s"></i><i style="--c:#3f8a4a;--y:13px;--d:-1.2s"></i><i style="--c:#3b86c8;--y:10px;--d:-1.5s"></i><i style="--c:#8c62c4;--y:6px;--d:-1.8s"></i><i style="--c:#f6c744;--y:10px;--d:-2.1s"></i><i style="--c:#3f8a4a;--y:13px;--d:-2.4s"></i><i style="--c:#3b86c8;--y:14px;--d:-2.7s"></i><i style="--c:#8c62c4;--y:13px;--d:-3.0s"></i><i style="--c:#f6c744;--y:10px;--d:-3.3s"></i></span>
             <span class="confetti" aria-hidden="true"><i style="--x:10%;--c:#3f8a4a;--d:0s;--t:5s"></i><i style="--x:24%;--c:#8c62c4;--d:-1.6s;--t:6s"></i><i style="--x:38%;--c:#f6c744;--d:-3s;--t:5.4s"></i><i style="--x:55%;--c:#3b86c8;--d:-0.8s;--t:4.6s"></i><i style="--x:70%;--c:#e86fa0;--d:-2.4s;--t:5.8s"></i><i style="--x:84%;--c:#3f8a4a;--d:-4s;--t:5s"></i><i style="--x:92%;--c:#8c62c4;--d:-1s;--t:6.2s"></i></span>
           </div>
@@ -974,7 +975,7 @@
             </div>
           </div>
           <div class="arch">
-            <img src="images/sangeet.webp" alt="Couple dancing on a stage under a disco ball" loading="lazy">
+            <img src="images/sangeet.webp" alt="Couple dancing on a stage under a disco ball" loading="lazy" decoding="async">
             <span class="beam beam--l" aria-hidden="true"></span>
             <span class="beam beam--r" aria-hidden="true"></span>
             <span class="disco" aria-hidden="true"></span>
@@ -1001,7 +1002,7 @@
             </dl>
           </div>
           <div class="arch">
-            <img src="images/wedding.webp" alt="Couple in Rajasthani lehenga and kurta before a palace" loading="lazy">
+            <img src="images/wedding.webp" alt="Couple in Rajasthani lehenga and kurta before a palace" loading="lazy" decoding="async">
             <svg class="bells wb-l" aria-hidden="true"><use href="#bell-string"/></svg>
             <svg class="bells wb-r" aria-hidden="true"><use href="#bell-string"/></svg>
             <span class="rose-petals" aria-hidden="true"><i style="--x:14%;--c:#c2405a;--d:0s;--t:6.5s"></i><i style="--x:30%;--c:#e07a8a;--d:-2.2s;--t:7s"></i><i style="--x:48%;--c:#c2405a;--d:-4s;--t:6s"></i><i style="--x:66%;--c:#f0c97a;--d:-1.2s;--t:7.4s"></i><i style="--x:82%;--c:#e07a8a;--d:-3.2s;--t:6.4s"></i></span>
@@ -1024,7 +1025,7 @@
       </div>
 
       <div class="reception-grid">
-        <div class="arch reveal"><img src="images/reception.webp" alt="The couple walking into a garden decorated with flowers" loading="lazy"></div>
+        <div class="arch reveal"><img src="images/reception.webp" alt="The couple walking into a garden decorated with flowers" loading="lazy" decoding="async"></div>
         <div class="rx-details reveal">
           <p class="lede">An afternoon of celebration,<br>blessings and togetherness</p>
           <div class="rx-row">
@@ -1113,13 +1114,13 @@
 
     <!-- Closing -->
     <section class="closing">
-      <div class="arch reveal"><img src="images/cover.webp" alt="The couple's hands tied together with a wedding knot beneath the P&amp;V monogram" loading="lazy"></div>
+      <div class="arch reveal"><img src="images/cover.webp" alt="The couple's hands tied together with a wedding knot beneath the P&amp;V monogram" loading="lazy" decoding="async"></div>
       <p class="script reveal">With love, the Ranka Sethia &amp; Bothra families</p>
       <div class="lotus-rule"><svg aria-hidden="true"><use href="#lotus"/></svg></div>
     </section>
 
-    <img class="corner corner--bl" src="images/corner.webp" alt="">
-    <img class="corner corner--br" src="images/corner.webp" alt="">
+    <img class="corner corner--bl" loading="lazy" decoding="async" src="images/corner.webp" alt="">
+    <img class="corner corner--br" loading="lazy" decoding="async" src="images/corner.webp" alt="">
   </main>
 
   <aside class="host" id="host" hidden>
