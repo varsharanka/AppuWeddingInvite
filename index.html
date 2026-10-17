@@ -238,6 +238,84 @@
   .dress dt { text-align: right; color: var(--bronze); }
   .dress dd { margin: 0; text-align: left; }
 
+  /* Sangeet: a night on stage */
+  .look.look--sangeet { /* beats the ivory swipe-card background on phones */
+    --gold: #f1d9a8;
+    position: relative; isolation: isolate;
+    padding: clamp(26px, 4vw, 44px); border-radius: 28px;
+    color: var(--gold);
+    background:
+      radial-gradient(circle at 20% 0%, #7c3b4c88, transparent 55%),
+      radial-gradient(circle at 90% 100%, #2d5c9277, transparent 55%),
+      linear-gradient(160deg, #2b1838, #160f24);
+    box-shadow: 0 30px 60px -30px #160f24cc, inset 0 0 0 1px #c9a47a66;
+  }
+  .look--sangeet .look-text { gap: 10px; }
+  .look--sangeet h3 {
+    color: #fff4dc;
+    text-shadow: 0 0 6px #ffd9a0, 0 0 22px #e8a26b, 0 0 44px #b27a45aa;
+    animation: neon 4s ease-in-out infinite;
+  }
+  .marquee { /* cinema sign with chasing bulbs */
+    position: relative; padding: 9px 20px;
+    font-family: var(--font-display); font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase;
+    border-radius: 6px; background: #f1d9a814;
+  }
+  .marquee::before {
+    content: ""; position: absolute; inset: -3px; border-radius: 9px; padding: 3px; pointer-events: none;
+    background: repeating-linear-gradient(90deg, #ffe7b0 0 4px, transparent 4px 12px);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    filter: drop-shadow(0 0 3px #ffcf7a);
+    animation: chase .8s linear infinite;
+  }
+  .slay { font-family: var(--font-script); font-size: var(--step-2); line-height: 1.1; color: #ffcf7a; transform: rotate(-4deg); margin-top: -4px; }
+  .look--sangeet .label { color: var(--gold); font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .tagline { font-style: italic; max-width: 34ch; line-height: 1.5; color: #f6e8cc; }
+  .vibes { list-style: none; padding: 0; margin: 4px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; width: 100%; max-width: 380px; }
+  .vibes li {
+    display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+    border: 1px solid #c9a47a77; border-radius: 999px; background: #f1d9a80f;
+    font-size: 0.95rem; text-align: left; line-height: 1.2;
+    transition: transform .3s var(--ease-out), background .3s;
+  }
+  .vibes li:hover { transform: translateY(-2px) rotate(-1deg); background: #f1d9a822; }
+  .vibes svg { flex: none; width: 20px; height: 20px; fill: none; stroke: #ffcf7a; stroke-width: 1.4; stroke-linejoin: round; stroke-linecap: round; }
+  .vibes li:nth-child(1) svg { animation: tap 1.2s ease-in-out infinite; transform-origin: 30% 100%; }
+  .skip { font-family: var(--font-display); font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; opacity: .75; margin-top: 6px; }
+  .look--sangeet .swatches { margin-top: 0; }
+  .look--sangeet .arch { aspect-ratio: 1 / 1; position: relative; border-color: #c9a47a88; outline-color: #c9a47a55; background: #160f24; }
+  .beam {
+    position: absolute; top: -10%; width: 34%; height: 120%; pointer-events: none; mix-blend-mode: screen;
+    background: linear-gradient(to bottom, #ffe7b099, #ffe7b000 85%);
+    clip-path: polygon(45% 0, 55% 0, 100% 100%, 0 100%);
+    transform-origin: 50% 0; animation: sweep 5s ease-in-out infinite alternate;
+  }
+  .beam--l { left: 8%; }
+  .beam--r { right: 8%; background: linear-gradient(to bottom, #cfe0f2aa, #cfe0f200 85%); animation-delay: -2.5s; animation-direction: alternate-reverse; }
+  .disco {
+    position: absolute; top: 6%; left: 50%; width: 46px; height: 46px; margin-left: -23px; border-radius: 50%;
+    background:
+      radial-gradient(circle at 32% 30%, #fff 0 8%, transparent 30%),
+      repeating-conic-gradient(#e8edf5 0 10deg, #8b93a6 10deg 20deg),
+      #c9ced8;
+    box-shadow: 0 0 18px #ffe7b0aa, inset -6px -8px 12px #0006;
+    animation: disco-spin 3s linear infinite;
+  }
+  .disco::before { content: ""; position: absolute; left: 50%; bottom: 100%; width: 1px; height: 60px; background: #c9a47a; }
+  .glints i {
+    position: absolute; width: 14px; height: 14px;
+    background: radial-gradient(circle, #fff, #ffe7b0 45%, transparent 70%);
+    clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+    opacity: 0; animation: twinkle 2.6s ease-in-out var(--d, 0s) infinite;
+  }
+  @keyframes neon { 0%, 100% { opacity: 1; } 46% { opacity: 1; } 48% { opacity: .7; } 50% { opacity: 1; } 52% { opacity: .8; } 54% { opacity: 1; } }
+  @keyframes chase { to { background-position: 12px 0; } }
+  @keyframes sweep { from { transform: rotate(18deg); } to { transform: rotate(-18deg); } }
+  @keyframes disco-spin { to { background-position: 0 0, 0 0, 0 0; filter: hue-rotate(0deg); transform: rotate(360deg); } }
+  @keyframes tap { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-14deg); } }
+  @media (prefers-reduced-motion: reduce) { .look--sangeet *, .look--sangeet *::before { animation: none !important; } }
+
   /* ---------- Reception ---------- */
   .reception { --bronze: var(--rose); background: linear-gradient(var(--paper), var(--blush) 140%); }
   .reception .section-head h2 { color: var(--rose); }
@@ -554,6 +632,8 @@
       background: #fffdf8;
     }
     .look .arch { order: -1; outline: 0; aspect-ratio: 1 / 1; border-radius: 150px 150px 10px 10px; }
+    .look.look--sangeet { padding: 14px 14px 22px; border-radius: 160px 160px 18px 18px; border-color: #c9a47a88; }
+    .vibes li { font-size: 0.82rem; padding: 7px 10px; }
     .look-text h3 { font-size: 3.2rem; }
     .look-text .label { font-size: 0.72rem; }
     .look-dots { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
@@ -778,16 +858,32 @@
           <div class="arch"><img src="images/haldi.webp" alt="Couple in green, blue and purple outfits at a carnival" loading="lazy"></div>
         </article>
 
-        <article class="look">
+        <article class="look look--sangeet">
           <div class="look-text">
+            <p class="marquee"><span>Now showing</span></p>
             <h3>Sangeet</h3>
-            <p class="label">Indowestern / movie character<br>Story telling time</p>
+            <p class="slay">It's time to slay!</p>
+            <p class="label">Indo-western glam or your favourite movie character &mdash; it's story-telling time</p>
+            <p class="tagline">Lace up those dancing shoes, practise your hook step and get ready for lights, camera, dhamaka!</p>
+            <ul class="vibes">
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 16c3 0 5-1 7-4l2-3 3 4c1 1.5 3 2 5 2h3v3H2zM5 19v3"/></svg>Dancing shoes on</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="18" height="11" rx="1"/><path d="M3 9l1.5-5h16L19 9M8.5 4L7 9M13.5 4L12 9M18.5 4L17 9"/></svg>A star-worthy entry</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="14" r="7"/><path d="M12 2v5M5 14h14M12 7c-3 3-3 11 0 14M12 7c3 3 3 11 0 14"/></svg>Your best moves</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg>A filmi dialogue</li>
+            </ul>
+            <p class="skip">Leave at home</p>
             <div class="swatches">
               <span class="swatch swatch--no" style="--c:var(--swatch-red)"><i></i>No red</span>
               <span class="swatch swatch--no" style="--c:var(--swatch-black)"><i></i>No black</span>
             </div>
           </div>
-          <div class="arch"><img src="images/sangeet.webp" alt="Couple dancing on a stage under a disco ball" loading="lazy"></div>
+          <div class="arch">
+            <img src="images/sangeet.webp" alt="Couple dancing on a stage under a disco ball" loading="lazy">
+            <span class="beam beam--l" aria-hidden="true"></span>
+            <span class="beam beam--r" aria-hidden="true"></span>
+            <span class="disco" aria-hidden="true"></span>
+            <span class="glints" aria-hidden="true"><i style="left:18%;top:30%"></i><i style="left:76%;top:24%;--d:-1.2s"></i><i style="left:62%;top:58%;--d:-2.1s"></i><i style="left:28%;top:66%;--d:-.6s"></i><i style="left:46%;top:40%;--d:-1.7s"></i></span>
+          </div>
         </article>
 
         <article class="look">
